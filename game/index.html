@@ -1,0 +1,30 @@
+<head>
+  <title>Game</title>
+</head>
+<body>
+  <button style="width:90px;height:40px;">Click!</button>
+  <script>
+    function startGame() {
+      let counter = 0;
+
+      document.querySelector('button').addEventListener('click', () => {
+        ++counter;
+      });
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (counter > 9) {
+            resolve(counter);
+          } else {
+            reject(counter);
+          }
+        }, 2000)
+
+      });
+    }
+
+    startGame()
+      .then((counter) => alert(`You won! You clicked ${counter} times.`))
+      .catch((counter) => alert(`Sorry, you only clicked ${counter} times.`));
+  </script>
+</body>
