@@ -3,14 +3,18 @@ const mongoose = require('mongoose');
 // Use ES6 promise implementation
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/users_test');
-console.log('Begin tests...');
-
-mongoose.connection
-  .once('open', () => {})
-  .on('error', (error) => {
-    console.warn('Warning', error);
-  });
+// Hook to connect to database
+before((done) => {
+  mongoose.connect('mongodb://localhost/users_test');
+  mongoose.connection
+    .once('open', () => {
+      console.log(`Connected to database. Begin tests... \n`); 
+      done();
+    })
+    .on('error', (error) => {
+      console.warn('Warning', error);
+    });
+});
 
 // Hook to empty db before each test
 beforeEach((done) => {
