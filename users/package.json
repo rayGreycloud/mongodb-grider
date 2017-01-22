@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -c"
+    "test": "nodemon --exec \"mocha -c\""
   },
   "author": "",
   "license": "ISC",
