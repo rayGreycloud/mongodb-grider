@@ -19,7 +19,7 @@ describe('Methods to read records', () => {
       });
   });
 
-  it('class methdod findOne', (done) => {
+  it('class method findOne', (done) => {
     User.findOne({ _id: joe._id })
       .then((user) => {
         assert(user.name === 'Joe');
