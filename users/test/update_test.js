@@ -25,4 +25,8 @@ function assertName(operation, done) {
     assertName(joe.save(), done);
   });
 
+  it('instance method update', (done) => {
+    assertName(joe.update({ name: 'Alex' }), done);
+  });
+
 });
