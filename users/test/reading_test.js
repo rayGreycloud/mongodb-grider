@@ -1,7 +1,7 @@
 const assert = require('assert');
 const User = require('../src/user')
 
-describe('Reading user records', () => {
+describe('Methods to read records', () => {
   let joe;
 
   beforeEach((done) => {
@@ -10,7 +10,7 @@ describe('Reading user records', () => {
       .then(() => done());
   });
 
-  it('should find all users with specified name', (done) => {
+  it('class method find', (done) => {
     User.find({ name: 'Joe' })
       .then((users) => {
         // Convert ObjectId to string
@@ -19,7 +19,7 @@ describe('Reading user records', () => {
       });
   });
 
-  it('should find user by id', (done) => {
+  it('class methdod findOne', (done) => {
     User.findOne({ _id: joe._id })
       .then((user) => {
         assert(user.name === 'Joe');

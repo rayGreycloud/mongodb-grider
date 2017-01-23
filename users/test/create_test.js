@@ -1,8 +1,8 @@
 const assert = require('assert');
 const User = require('../src/user')
 
-describe('Creating user records', () => {
-  it('should save a user', (done) => {
+describe('Method to create records', () => {
+  it('instance method save', (done) => {
     // Create instance of User
     const joe = new User({ name: 'Joe' });
     // Insert/save in db
