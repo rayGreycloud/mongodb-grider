@@ -9,4 +9,12 @@ describe('Methods to validate records', () => {
 
     assert(message === 'Name is required.');
   });
+
+  it('validates by using validator function', () => {
+    const user = new User({ name: 'Al' });
+    const validationResult = user.validateSync();
+    const { message } = validationResult.errors.name;
+
+    assert(message === 'Name must be at least 3 characters.');
+  });
 });
