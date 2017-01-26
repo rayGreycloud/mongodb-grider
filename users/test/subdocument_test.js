@@ -16,4 +16,23 @@ describe ('Methods for Subdocuments', () => {
         done();
       });
   });
+
+  it('should add subdocuments to existing record', () => {
+    const joe = new User({
+      name: 'Joe',
+      posts: []
+    });
+
+    joe.save()
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        user.posts.push({ title: 'New Post' });
+        return user.save();
+      })
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        assert(user.posts[0].title === 'New Post');
+        done();
+      });
+  });
 });
