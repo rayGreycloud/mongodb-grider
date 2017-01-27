@@ -13,7 +13,8 @@ const UserSchema = new Schema({
   },
   // Change to virtual type
   // postCount: Number,
-  posts: [PostSchema]
+  posts: [PostSchema],
+  likes: Number
 });
 
 // Add virtual field outside schema definition
