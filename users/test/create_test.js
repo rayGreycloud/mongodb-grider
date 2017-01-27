@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/user')
+const User = require('../src/user');
 
 describe('Method to create records', () => {
   it('instance method save', (done) => {

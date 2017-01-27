@@ -11,9 +11,15 @@ const UserSchema = new Schema({
     },
     required: [true, 'Name is required.']
   },
-  postCount: Number,
-  // Embedded subdocuments from posts
+  // Change to virtual type
+  // postCount: Number,
   posts: [PostSchema]
+});
+
+// Add virtual field outside schema definition
+// Use function keyword so 'this' refers to model instance
+UserSchema.virtual('postCount').get(function() {
+  return this.posts.length;
 });
 
 const User = mongoose.model('user', UserSchema);

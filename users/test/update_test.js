@@ -1,5 +1,5 @@
 const assert = require('assert');
-const User = require('../src/user')
+const User = require('../src/user');
 
 describe('Methods to update records', () => {
   let joe;
@@ -50,7 +50,8 @@ function assertName(operation, done) {
     );
   });
 
-  it('should increment postCount', (done) => {
+  // Use xit to prevent test from running
+  xit('should increment postCount', (done) => {
     User.update(
       { name: 'Joe' },
       // Increment update operator
