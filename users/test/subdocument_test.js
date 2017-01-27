@@ -17,7 +17,7 @@ describe ('Methods for Subdocuments', () => {
       });
   });
 
-  it('should add subdocuments to existing record', () => {
+  it('should add subdocuments to existing record', (done) => {
     const joe = new User({
       name: 'Joe',
       posts: []
