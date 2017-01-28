@@ -14,7 +14,11 @@ const UserSchema = new Schema({
   // Change to virtual type
   // postCount: Number,
   posts: [PostSchema],
-  likes: Number
+  likes: Number,
+  blogPosts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'blogPost'
+  }]
 });
 
 // Add virtual field outside schema definition
