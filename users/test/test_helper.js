@@ -8,7 +8,7 @@ before((done) => {
   mongoose.connect('mongodb://localhost/users_test');
   mongoose.connection
     .once('open', () => {
-      console.log(`Connected to database. Beginning tests... \n`); 
+      console.log(`Connected to database. Beginning tests... \n`);
       done();
     })
     .on('error', (error) => {
@@ -18,10 +18,14 @@ before((done) => {
 
 // Hook to empty db before each test
 beforeEach((done) => {
-  // Drop collection
-  mongoose.connection.collections.users.drop(() => {
-    // Ready to run next test
-    done();
+  // Drop collections
+  const { users, comment, blogPosts } = mongoose.connection.collections;
+  users.drop(() => {
+    comments.drop(() => {
+      blogPost.drop(() => {
+        done();
+      });
+    });
   });
 });
 
