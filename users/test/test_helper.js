@@ -19,10 +19,10 @@ before((done) => {
 // Hook to empty db before each test
 beforeEach((done) => {
   // Drop collections
-  const { users, comment, blogPosts } = mongoose.connection.collections;
+  const { users, comments, blogposts } = mongoose.connection.collections;
   users.drop(() => {
     comments.drop(() => {
-      blogPost.drop(() => {
+      blogposts.drop(() => {
         done();
       });
     });
