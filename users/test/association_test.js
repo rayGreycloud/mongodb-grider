@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const assert = require('assert');
 const User = require('../src/user');
 const Comment = require('../src/comment');
 const BlogPost = require('../src/blogPost');
@@ -21,10 +22,13 @@ describe('Methods for Associations', () => {
       .then(() => done());
   });
 
-  it.only('should save assocation between records', (done) => {
+  it('should save association between records', (done) => {
+    // Query
     User.findOne({ name: 'Joe' })
+      // Use modifier to populate query to desired association
+      .populate('blogPosts')
       .then((user) => {
-        console.log(user);
+        assert(user.blogPosts[0].title === 'JS is great');
         done();
       });
   });
