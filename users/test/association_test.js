@@ -27,8 +27,38 @@ describe('Methods for Associations', () => {
     User.findOne({ name: 'Joe' })
       // Use modifier to populate query to desired association
       .populate('blogPosts')
+      // Test association
       .then((user) => {
         assert(user.blogPosts[0].title === 'JS is great');
+        done();
+      });
+  });
+
+  it('should save a full relation tree', (done) => {
+    // Going down the rabbit hole...
+    User.findOne({ name: 'Joe' })
+    // Pass config object
+      .populate({
+        // Find property and load association
+        path: 'blogPosts',
+        // Find property on nested assoc and load
+        populate: {
+          path: 'comments',
+          // Specify mongoose model to use
+          model: 'comment',
+          // Repeat to load user association to comments
+          populate: {
+            path: 'user',
+            model: 'user'
+          }
+        }
+      })
+      .then((user) => {
+        assert(user.name === 'Joe');
+        assert(user.blogPosts[0].title === 'JS is great');
+        assert(user.blogPosts[0].comments[0].content === 'Could not agree more.');
+        assert(user.blogPosts[0].comments[0].user.name === 'Joe');
+
         done();
       });
   });
