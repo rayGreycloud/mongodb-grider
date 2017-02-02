@@ -27,6 +27,17 @@ UserSchema.virtual('postCount').get(function() {
   return this.posts.length;
 });
 
+// Middleware for clean-up
+UserSchema.pre('remove', function(next) {
+  // Grab model (Not imported because blogPost imports user already)
+  const BlogPost = mongoose.model('blogPost');
+
+  // Using $in operator for cross-removal
+  // Go thru collection and remove all records with _id in array. this == user being deleted
+  BlogPost.remove({ _id: { $in: this.blogPosts } })
+    .then(() => next());
+});
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
