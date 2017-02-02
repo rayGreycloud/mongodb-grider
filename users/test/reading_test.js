@@ -11,10 +11,11 @@ describe('Methods to read records', () => {
     moe = new User({ name: 'Moe' });
 
     Promise.all([
+      moe.save(),
       joe.save(),
       kit.save(),
-      liz.save(),
-      moe.save()
+      liz.save()
+    
     ])
       .then(() => done());
   });
@@ -38,10 +39,10 @@ describe('Methods to read records', () => {
 
   it('should use modifiers skip and limit', (done) => {
     User.find({}) // find all records
+      .sort({ name: 1 })   // sort by property - ascending
       .skip(1)  // skip 1st records
       .limit(2) // limit results to 2
       .then((users) => {
-        console.log(users[0]);
         assert(users[0].name === 'Kit');
         assert(users[1].name === 'Liz');
         assert(users.length === 2);
