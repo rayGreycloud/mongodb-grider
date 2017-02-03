@@ -31,7 +31,7 @@ class ArtistDetail extends Component {
       return (
         <div className="card album" key={album.title}>
           <div className="card-image">
-            <img src={album.image} />
+            <img alt="Album Cover" src={album.image} />
             <span className="card-title">
               <h4>{album.title}</h4>
             </span>
@@ -54,7 +54,11 @@ class ArtistDetail extends Component {
   render() {
     if (!this.props.artist) { return <div>Todo: implement "FindArtist" query</div>; }
 
-    const { artist: { name, age, genre, image, yearsActive, netWorth, labelName, _id } } = this.props;
+    const {
+      artist: {
+      name, age, genre, image, yearsActive, netWorth, labelName, _id
+      } 
+    } = this.props;
 
     return (
       <div>
