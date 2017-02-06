@@ -30,6 +30,8 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
 const buildQuery = (criteria) => {
   const query = {};
 
+// $text query requires text index
+// Added with mongo shell command:  db.artists.createIndex({ name: "text" })
   if (criteria.name) {
     query.$text = { $search: criteria.name };
   }
